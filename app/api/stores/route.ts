@@ -9,8 +9,6 @@ export async function POST(req: Request) {
 
 		const { name } = body
 
-		console.log(userId)
-
 		if (!userId) {
 			return new NextResponse('Unauthorized', { status: 401 })
 		}

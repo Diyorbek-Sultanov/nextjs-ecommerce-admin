@@ -13,7 +13,7 @@ const HomePage = () => {
 		}
 	}, [open, onOpen])
 
-	return <div>page</div>
+	return null
 }
 
 export default HomePage

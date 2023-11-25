@@ -36,8 +36,9 @@ const StoreModal: React.FC = () => {
 	const onSubmit = async (values: TStoreSchema) => {
 		try {
 			setIsLoading(true)
-			await StoreService.createStore(values)
+			const response = await StoreService.createStore(values)
 
+			window.location.assign(`/${response.id}`)
 			toast.success('Store success created')
 		} catch (error) {
 			const err = error as Error
