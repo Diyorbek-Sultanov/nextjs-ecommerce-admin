@@ -4,7 +4,11 @@ import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import RootProvider from '@/providers/root-provider'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+	subsets: ['latin'],
+	weight: ['300', '400', '500', '600', '700'],
+	display: 'swap',
+})
 
 export const metadata: Metadata = {
 	title: 'Create Next App',

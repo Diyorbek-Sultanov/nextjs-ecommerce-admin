@@ -1,6 +1,7 @@
 'use client'
 
 import AlertModal from '@/components/alert-modal'
+import ApiAlert from '@/components/api-alert'
 import Heading from '@/components/heading'
 import { Button } from '@/components/ui/button'
 import {
@@ -13,12 +14,13 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
+import { useOrigin } from '@/hooks/use-origin'
 import { useStore } from '@/hooks/use-store'
 import { TStoreSchema, storeSchema } from '@/lib/zod-validation/store'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Store } from '@prisma/client'
 import { Trash } from 'lucide-react'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -28,8 +30,7 @@ type TSettingsFormProps = {
 
 const SettingsForm: React.FC<TSettingsFormProps> = ({ initialData }) => {
 	const params = useParams()
-	const router = useRouter()
-
+	const origin = useOrigin()
 	const [isOpen, setIsOpen] = useState(false)
 
 	const { deleteLoading, deleteMutate, updateLoading, updateMutate } =
@@ -95,6 +96,11 @@ const SettingsForm: React.FC<TSettingsFormProps> = ({ initialData }) => {
 					</Button>
 				</form>
 			</Form>
+			<ApiAlert
+				title='NEXT_PUBLIC_API_URL'
+				descripton={`${origin}/api/${params.storeId}`}
+				variant='public'
+			/>
 		</>
 	)
 }
