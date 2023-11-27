@@ -10,6 +10,11 @@ const NavRoutes: React.FC = () => {
 
 	const routes = [
 		{
+			href: `/${params.storeId}`,
+			label: 'Overview',
+			active: pathname === `/${params.storeId}`,
+		},
+		{
 			href: `/${params.storeId}/settings`,
 			label: 'Settings',
 			active: pathname === `/${params.storeId}/settings`,

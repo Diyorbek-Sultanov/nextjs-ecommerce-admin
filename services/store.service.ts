@@ -8,6 +8,14 @@ class storeService {
 
 		return response.data
 	}
+
+	async updateStore(data: TStoreSchema, id: string) {
+		return await axios.patch(`/api/stores/${id}`, data)
+	}
+
+	async deleteStore(id: string) {
+		return await axios.delete(`/api/stores/${id}`)
+	}
 }
 
 export const StoreService = new storeService()

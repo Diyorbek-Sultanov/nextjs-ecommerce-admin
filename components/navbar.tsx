@@ -1,10 +1,21 @@
-import { UserButton } from '@clerk/nextjs'
+import { UserButton, auth } from '@clerk/nextjs'
 import NavRoutes from './NavRoutes'
 import StoreSwitcher from './store-switcher'
 import { db } from '@/lib/db'
+import { redirect } from 'next/navigation'
 
 const Navbar: React.FC = async () => {
-	const store = await db.store.findMany()
+	const { userId } = auth()
+
+	if (!userId) {
+		redirect('/sign-in')
+	}
+
+	const store = await db.store.findMany({
+		where: {
+			userId,
+		},
+	})
 
 	return (
 		<header className='border-b'>
