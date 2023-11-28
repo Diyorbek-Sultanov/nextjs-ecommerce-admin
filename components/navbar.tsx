@@ -1,5 +1,5 @@
 import { UserButton, auth } from '@clerk/nextjs'
-import NavRoutes from './NavRoutes'
+import NavRoutes from './nav-routes'
 import StoreSwitcher from './store-switcher'
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
