@@ -95,7 +95,7 @@ const BillboardForm: React.FC<TBillboardFormProps> = ({ initialData }) => {
 						disabled={updateLoading}
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel htmlFor='label'>Label</FormLabel>
+								<FormLabel>Image</FormLabel>
 								<FormControl>
 									<ImageUpload
 										imageUlrs={field.value ? [field.value] : []}

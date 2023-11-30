@@ -15,17 +15,6 @@ const useBillboard = () => {
 	const router = useRouter()
 	const params = useParams()
 
-	const { data: billboard, isPending: isLoading } = useQuery({
-		queryKey: [GETSINGLEBILLBOARD],
-		queryFn: () =>
-			BillboardService.getBillboardById(
-				params.billboardId as string,
-				params.storeId as string
-			),
-		select: ({ data }) => data,
-		enabled: !!params.billboardId,
-	})
-
 	const { mutate: createMutate, isPending: createLoading } = useMutation({
 		mutationKey: [CREATEBILLBOARD],
 		mutationFn: (data: TBilboardSchema) =>
@@ -82,8 +71,6 @@ const useBillboard = () => {
 		deleteMutate,
 		createLoading,
 		createMutate,
-		billboard,
-		isLoading,
 	}
 }
 
