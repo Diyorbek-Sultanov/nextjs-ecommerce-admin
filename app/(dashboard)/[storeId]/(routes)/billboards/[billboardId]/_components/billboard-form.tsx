@@ -1,7 +1,6 @@
 'use client'
 
 import AlertModal from '@/components/alert-modal'
-import ApiAlert from '@/components/api-alert'
 import Heading from '@/components/heading'
 import ImageUpload from '@/components/image-upload'
 import { Button } from '@/components/ui/button'
@@ -16,8 +15,6 @@ import {
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { useBillboard } from '@/hooks/use-billboard'
-import { useOrigin } from '@/hooks/use-origin'
-import { useStore } from '@/hooks/use-store'
 import {
 	type TBilboardSchema,
 	billboardSchema,
@@ -25,7 +22,6 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Billboard } from '@prisma/client'
 import { Trash } from 'lucide-react'
-import { useParams } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -34,8 +30,6 @@ type TBillboardFormProps = {
 }
 
 const BillboardForm: React.FC<TBillboardFormProps> = ({ initialData }) => {
-	const params = useParams()
-	const origin = useOrigin()
 	const [isOpen, setIsOpen] = useState(false)
 
 	const {
@@ -140,11 +134,6 @@ const BillboardForm: React.FC<TBillboardFormProps> = ({ initialData }) => {
 					</Button>
 				</form>
 			</Form>
-			<ApiAlert
-				title='NEXT_PUBLIC_API_URL'
-				descripton={`${origin}/api/${params.storeId}/billboards`}
-				variant='public'
-			/>
 		</>
 	)
 }

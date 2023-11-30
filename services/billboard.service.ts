@@ -7,6 +7,10 @@ class billboardService {
 		return axios.get<Billboard[]>(`/api/${storeId}/billboards`)
 	}
 
+	async getBillboardById(billboardId: string, storeId: string) {
+		return axios.get<Billboard>(`/api/${storeId}/billboards/${billboardId}`)
+	}
+
 	async createBillboard(data: TBilboardSchema, storeId: string) {
 		return axios.post(`/api/${storeId}/billboards`, data)
 	}

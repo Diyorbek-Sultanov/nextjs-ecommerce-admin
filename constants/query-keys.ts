@@ -4,6 +4,7 @@ const UPDATESTORE = 'update-store'
 const CREATEBILLBOARD = 'create-billboard'
 const UPDATEBILLBOARD = 'update-billboard'
 const DELETEBILLBOARD = 'delet-billboard'
+const GETSINGLEBILLBOARD = 'get-single-billboard'
 
 export {
 	UPDATESTORE,
@@ -11,4 +12,5 @@ export {
 	CREATEBILLBOARD,
 	DELETEBILLBOARD,
 	UPDATEBILLBOARD,
+	GETSINGLEBILLBOARD,
 }

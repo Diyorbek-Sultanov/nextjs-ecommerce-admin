@@ -1,18 +1,30 @@
 import {
 	CREATEBILLBOARD,
 	DELETEBILLBOARD,
+	GETSINGLEBILLBOARD,
 	UPDATEBILLBOARD,
 } from '@/constants/query-keys'
 import { TBilboardSchema } from '@/lib/zod-validation/billboard'
 import { BillboardService } from '@/services/billboard.service'
 import { StoreService } from '@/services/store.service'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
 const useBillboard = () => {
 	const router = useRouter()
 	const params = useParams()
+
+	const { data: billboard, isPending: isLoading } = useQuery({
+		queryKey: [GETSINGLEBILLBOARD],
+		queryFn: () =>
+			BillboardService.getBillboardById(
+				params.billboardId as string,
+				params.storeId as string
+			),
+		select: ({ data }) => data,
+		enabled: !!params.billboardId,
+	})
 
 	const { mutate: createMutate, isPending: createLoading } = useMutation({
 		mutationKey: [CREATEBILLBOARD],
@@ -70,6 +82,8 @@ const useBillboard = () => {
 		deleteMutate,
 		createLoading,
 		createMutate,
+		billboard,
+		isLoading,
 	}
 }
 
