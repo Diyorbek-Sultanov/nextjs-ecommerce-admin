@@ -42,6 +42,7 @@ export async function POST(
 		return NextResponse.json(billboard, { status: 201 })
 	} catch (error) {
 		console.log('billboard post', error)
+		return new NextResponse('Internal error', { status: 500 })
 	}
 }
 
@@ -63,5 +64,6 @@ export async function GET(
 		return NextResponse.json(billboards)
 	} catch (error) {
 		console.log('billboards get', error)
+		return new NextResponse('Internal error', { status: 500 })
 	}
 }
