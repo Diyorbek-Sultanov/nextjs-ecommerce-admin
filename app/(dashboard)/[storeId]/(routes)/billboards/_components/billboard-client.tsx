@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { columns, type BillboardColumns } from './columns'
 import { DataTable } from '@/components/ui/data-table'
+import ApiList from '@/components/api-list'
 
 const BillboardClient: React.FC<{ data: Billboard[] }> = ({ data }) => {
 	const params = useParams()
@@ -37,6 +38,8 @@ const BillboardClient: React.FC<{ data: Billboard[] }> = ({ data }) => {
 			</div>
 			<Separator />
 			<DataTable columns={columns} data={formattedData} searchKey='label' />
+			<Separator />
+			<ApiList entityName='billboards' entityIdName='billboardId' />
 		</>
 	)
 }

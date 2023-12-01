@@ -1,8 +1,6 @@
 import { db } from '@/lib/db'
 import BillboardClient from './_components/billboard-client'
 
-export const revalidate = 10
-
 const BillboardPage = async ({ params }: { params: { storeId: string } }) => {
 	const billboards = await db.billboard.findMany({
 		where: {
