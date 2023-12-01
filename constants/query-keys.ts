@@ -6,6 +6,10 @@ const UPDATEBILLBOARD = 'update-billboard'
 const DELETEBILLBOARD = 'delet-billboard'
 const GETSINGLEBILLBOARD = 'get-single-billboard'
 
+const CREATECATEGORY = 'create-category'
+const UPDATECATEGORY = 'update-category'
+const DELETECATEGORY = 'delet-category'
+
 export {
 	UPDATESTORE,
 	DELETESTORE,
@@ -13,4 +17,7 @@ export {
 	DELETEBILLBOARD,
 	UPDATEBILLBOARD,
 	GETSINGLEBILLBOARD,
+	CREATECATEGORY,
+	UPDATECATEGORY,
+	DELETECATEGORY,
 }

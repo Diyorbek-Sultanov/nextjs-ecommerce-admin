@@ -1,27 +1,26 @@
 import {
-	CREATEBILLBOARD,
-	DELETEBILLBOARD,
-	GETSINGLEBILLBOARD,
-	UPDATEBILLBOARD,
+	CREATECATEGORY,
+	DELETECATEGORY,
+	UPDATECATEGORY,
 } from '@/constants/query-keys'
-import { TBilboardSchema } from '@/lib/zod-validation/billboard'
-import { BillboardService } from '@/services/billboard.service'
+import { TCategorySchema } from '@/lib/zod-validation/category'
+import { CategoryService } from '@/services/category.service'
 import { useMutation } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
-const useBillboard = () => {
+const useCategory = () => {
 	const router = useRouter()
 	const params = useParams()
 
 	const { mutate: createMutate, isPending: createLoading } = useMutation({
-		mutationKey: [CREATEBILLBOARD],
-		mutationFn: (data: TBilboardSchema) =>
-			BillboardService.createBillboard(data, params.storeId as string),
+		mutationKey: [CREATECATEGORY],
+		mutationFn: (data: TCategorySchema) =>
+			CategoryService.createCategory(data, params.storeId as string),
 		onSuccess: () => {
-			toast.success('Billboard success created')
+			toast.success('Category success created')
 			router.refresh()
-			router.push(`/${params.storeId}/billboards`)
+			router.push(`/${params.storeId}/categories`)
 		},
 		onError: (error) => {
 			toast.error(error.message)
@@ -29,17 +28,17 @@ const useBillboard = () => {
 	})
 
 	const { mutate: updateMutate, isPending: updateLoading } = useMutation({
-		mutationKey: [UPDATEBILLBOARD],
-		mutationFn: (data: TBilboardSchema) =>
-			BillboardService.updateBillboard(
+		mutationKey: [UPDATECATEGORY],
+		mutationFn: (data: TCategorySchema) =>
+			CategoryService.updateCategory(
 				data,
-				params.billboardId as string,
-				params.storeId as string
+				params.storeId as string,
+				params.categoryId as string
 			),
 		onSuccess: () => {
-			toast.success('Billboard success updated')
+			toast.success('Category success updated')
 			router.refresh()
-			router.push(`/${params.storeId}/billboards`)
+			router.push(`/${params.storeId}/categories`)
 		},
 		onError: (error) => {
 			toast.error(error.message)
@@ -47,16 +46,16 @@ const useBillboard = () => {
 	})
 
 	const { mutate: deleteMutate, isPending: deleteLoading } = useMutation({
-		mutationKey: [DELETEBILLBOARD],
+		mutationKey: [DELETECATEGORY],
 		mutationFn: () =>
-			BillboardService.deleteBillboard(
+			CategoryService.deleteCategory(
 				params.storeId as string,
-				params.billboardId as string
+				params.categoryId as string
 			),
 		onSuccess: () => {
-			toast.success('Billboard success deleted')
+			toast.success('Category success deleted')
 			router.refresh()
-			router.push(`/${params.storeId}/billboards`)
+			router.push(`/${params.storeId}/categories`)
 		},
 		onError: (error) => {
 			toast.error(error.message)
@@ -73,4 +72,4 @@ const useBillboard = () => {
 	}
 }
 
-export { useBillboard }
+export { useCategory }
