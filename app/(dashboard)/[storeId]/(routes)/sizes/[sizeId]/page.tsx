@@ -1,25 +1,15 @@
-import CategoryForm from './_components/category-form'
+import SizeForm from './_components/size-form'
 import { Skeleton } from '@/components/ui/skeleton'
 import { db } from '@/lib/db'
 
-const CategoryIdPage = async ({
-	params,
-}: {
-	params: { categoryId: string; storeId: string }
-}) => {
-	const category = await db.category.findUnique({
+const SizeIdPage = async ({ params }: { params: { sizeId: string } }) => {
+	const size = await db.size.findUnique({
 		where: {
-			id: params.categoryId,
+			id: params.sizeId,
 		},
 	})
 
-	const billboards = await db.billboard.findMany({
-		where: {
-			storeId: params.storeId,
-		},
-	})
-
-	if (!category && params.categoryId !== 'new') {
+	if (size === null && params.sizeId !== 'new') {
 		return (
 			<div className='flex flex-col'>
 				<div className='flex-1 space-y-4 p-8 pt-6'>
@@ -30,14 +20,14 @@ const CategoryIdPage = async ({
 						</div>
 						<Skeleton className='w-10 h-10' />
 					</div>
-					<div className='pt-10 flex items-center gap-6'>
+					<div className='pt-10 flex items-center gap-8'>
 						<div>
 							<Skeleton className='h-4 w-16 mb-3' />
-							<Skeleton className='h-8 w-52 mb-4' />
+							<Skeleton className='h-8 w-52' />
 						</div>
 						<div>
 							<Skeleton className='h-4 w-16 mb-3' />
-							<Skeleton className='h-8 w-52 mb-5' />
+							<Skeleton className='h-8 w-52' />
 						</div>
 					</div>
 					<Skeleton className='h-10 w-36' />
@@ -49,10 +39,10 @@ const CategoryIdPage = async ({
 	return (
 		<div className='flex flex-col'>
 			<div className='flex-1 space-y-4 p-8 pt-6'>
-				<CategoryForm initialData={category} billboards={billboards} />
+				<SizeForm initialData={size} />
 			</div>
 		</div>
 	)
 }
 
-export default CategoryIdPage
+export default SizeIdPage

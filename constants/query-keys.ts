@@ -10,6 +10,10 @@ const CREATECATEGORY = 'create-category'
 const UPDATECATEGORY = 'update-category'
 const DELETECATEGORY = 'delet-category'
 
+const CREATESIZE = 'create-size'
+const UPDATEDSIZE = 'update-size'
+const DELETESIZE = 'delet-size'
+
 export {
 	UPDATESTORE,
 	DELETESTORE,
@@ -20,4 +24,7 @@ export {
 	CREATECATEGORY,
 	UPDATECATEGORY,
 	DELETECATEGORY,
+	CREATESIZE,
+	UPDATEDSIZE,
+	DELETESIZE,
 }
