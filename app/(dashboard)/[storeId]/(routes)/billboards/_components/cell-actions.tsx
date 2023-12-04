@@ -18,7 +18,7 @@ import AlertModal from '@/components/alert-modal'
 
 const CellActions: React.FC<{ data: BillboardColumns }> = ({ data }) => {
 	const params = useParams()
-	const { deleteLoading, deleteMutate } = useBillboard()
+	const { deleteLoading, deleteMutate } = useBillboard(data.id)
 	const [isOpen, setIsOpen] = useState(false)
 
 	const onCopy = () => {

@@ -15,10 +15,11 @@ import { toast } from 'sonner'
 import { useBillboard } from '@/hooks/use-billboard'
 import { useState } from 'react'
 import AlertModal from '@/components/alert-modal'
+import { useSize } from '@/hooks/use-size'
 
 const CellActions: React.FC<{ data: SizesColumns }> = ({ data }) => {
 	const params = useParams()
-	const { deleteLoading, deleteMutate } = useBillboard()
+	const { deleteLoading, deleteMutate } = useSize(data.id)
 	const [isOpen, setIsOpen] = useState(false)
 
 	const onCopy = () => {

@@ -10,7 +10,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
-const useBillboard = () => {
+const useBillboard = (billboardId?: string) => {
 	const router = useRouter()
 	const params = useParams()
 
@@ -51,7 +51,7 @@ const useBillboard = () => {
 		mutationFn: () =>
 			BillboardService.deleteBillboard(
 				params.storeId as string,
-				params.billboardId as string
+				billboardId as string
 			),
 		onSuccess: () => {
 			toast.success('Billboard success deleted')

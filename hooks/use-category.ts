@@ -9,7 +9,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
-const useCategory = () => {
+const useCategory = (categoryId?: string) => {
 	const router = useRouter()
 	const params = useParams()
 
@@ -50,7 +50,7 @@ const useCategory = () => {
 		mutationFn: () =>
 			CategoryService.deleteCategory(
 				params.storeId as string,
-				params.categoryId as string
+				categoryId as string
 			),
 		onSuccess: () => {
 			toast.success('Category success deleted')

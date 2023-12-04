@@ -14,6 +14,10 @@ const CREATESIZE = 'create-size'
 const UPDATEDSIZE = 'update-size'
 const DELETESIZE = 'delet-size'
 
+const CREATECOLOR = 'create-color'
+const UPDATECOLOR = 'update-color'
+const DELETECOLOR = 'delet-color'
+
 export {
 	UPDATESTORE,
 	DELETESTORE,
@@ -27,4 +31,7 @@ export {
 	CREATESIZE,
 	UPDATEDSIZE,
 	DELETESIZE,
+	CREATECOLOR,
+	UPDATECOLOR,
+	DELETECOLOR,
 }

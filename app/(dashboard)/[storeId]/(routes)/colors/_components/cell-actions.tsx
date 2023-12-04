@@ -8,19 +8,19 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Copy, Edit3, MoreHorizontal, Trash } from 'lucide-react'
-import type { CategoryColumns } from './columns'
+import type { ColorsColumns } from './columns'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { toast } from 'sonner'
-import { useBillboard } from '@/hooks/use-billboard'
 import { useState } from 'react'
 import AlertModal from '@/components/alert-modal'
-import { useCategory } from '@/hooks/use-category'
+import { useColors } from '@/hooks/use-colors'
 
-const CellActions: React.FC<{ data: CategoryColumns }> = ({ data }) => {
+const CellActions: React.FC<{ data: ColorsColumns }> = ({ data }) => {
 	const params = useParams()
-	const { deleteLoading, deleteMutate } = useCategory(data.id)
 	const [isOpen, setIsOpen] = useState(false)
+
+	const { deleteLoading, deleteMutate } = useColors(data.id)
 
 	const onCopy = () => {
 		navigator.clipboard.writeText(data.id)
@@ -50,7 +50,7 @@ const CellActions: React.FC<{ data: CategoryColumns }> = ({ data }) => {
 						Copy ID
 					</DropdownMenuItem>
 					<DropdownMenuItem asChild>
-						<Link href={`/${params.storeId}/categories/${data.id}`}>
+						<Link href={`/${params.storeId}/colors/${data.id}`}>
 							<Edit3 className='h-4 w-4 mr-2' />
 							Edit
 						</Link>

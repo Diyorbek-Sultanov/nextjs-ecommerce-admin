@@ -1,21 +1,21 @@
-import { CREATESIZE, DELETESIZE, UPDATEDSIZE } from '@/constants/query-keys'
-import type { TSizeSchema } from '@/lib/zod-validation/size'
-import { SizeService } from '@/services/size.service'
+import { CREATECOLOR, DELETECOLOR, UPDATECOLOR } from '@/constants/query-keys'
+import type { TColorSchema } from '@/lib/zod-validation/color'
+import { ColorService } from '@/services/color.service'
 import { useMutation } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
-const useSize = (sizeId?: string) => {
+const useColors = (colorId?: string) => {
 	const router = useRouter()
 	const params = useParams()
 
 	const { mutate: createMutate, isPending: createLoading } = useMutation({
-		mutationKey: [CREATESIZE],
-		mutationFn: (data: TSizeSchema) =>
-			SizeService.createSize(data, params.storeId as string),
+		mutationKey: [CREATECOLOR],
+		mutationFn: (data: TColorSchema) =>
+			ColorService.createColor(data, params.storeId as string),
 		onSuccess: () => {
-			toast.success('Size success created')
-			router.push(`/${params.storeId}/sizes`)
+			toast.success('Color success created')
+			router.push(`/${params.storeId}/colors`)
 			router.refresh()
 		},
 		onError: (error) => {
@@ -24,16 +24,16 @@ const useSize = (sizeId?: string) => {
 	})
 
 	const { mutate: updateMutate, isPending: updateLoading } = useMutation({
-		mutationKey: [UPDATEDSIZE],
-		mutationFn: (data: TSizeSchema) =>
-			SizeService.updateSize(
+		mutationKey: [UPDATECOLOR],
+		mutationFn: (data: TColorSchema) =>
+			ColorService.updateColor(
 				data,
 				params.storeId as string,
-				params.sizeId as string
+				params.colorId as string
 			),
 		onSuccess: () => {
-			toast.success('Size success updated')
-			router.push(`/${params.storeId}/sizes`)
+			toast.success('Color success updated')
+			router.push(`/${params.storeId}/colors`)
 			router.refresh()
 		},
 		onError: (error) => {
@@ -42,12 +42,12 @@ const useSize = (sizeId?: string) => {
 	})
 
 	const { mutate: deleteMutate, isPending: deleteLoading } = useMutation({
-		mutationKey: [DELETESIZE],
+		mutationKey: [DELETECOLOR],
 		mutationFn: () =>
-			SizeService.deletSize(params.storeId as string, sizeId as string),
+			ColorService.deleteColor(params.storeId as string, colorId!),
 		onSuccess: () => {
-			toast.success('Size success deleted')
-			router.push(`/${params.storeId}/sizes`)
+			toast.success('Color success deleted')
+			router.push(`/${params.storeId}/colors`)
 			router.refresh()
 		},
 		onError: (error) => {
@@ -65,4 +65,4 @@ const useSize = (sizeId?: string) => {
 	}
 }
 
-export { useSize }
+export { useColors }

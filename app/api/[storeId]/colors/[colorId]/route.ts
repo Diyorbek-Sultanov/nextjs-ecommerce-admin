@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 
 export async function PATCH(
 	req: Request,
-	{ params }: { params: { storeId: string; sizeId: string } }
+	{ params }: { params: { storeId: string; colorId: string } }
 ) {
 	try {
 		const { userId } = auth()
@@ -20,7 +20,7 @@ export async function PATCH(
 			return new NextResponse('Fields is missing', { status: 400 })
 		}
 
-		if (!params.sizeId) {
+		if (!params.colorId) {
 			return new NextResponse('Size id is missing', { status: 400 })
 		}
 
@@ -35,9 +35,9 @@ export async function PATCH(
 			return new NextResponse('Unautohorized', { status: 403 })
 		}
 
-		const size = await db.size.updateMany({
+		const color = await db.color.updateMany({
 			where: {
-				id: params.sizeId,
+				id: params.colorId,
 			},
 			data: {
 				name,
@@ -45,16 +45,16 @@ export async function PATCH(
 			},
 		})
 
-		return NextResponse.json(size, { status: 201 })
+		return NextResponse.json(color, { status: 201 })
 	} catch (error) {
-		console.log('size patch', error)
+		console.log('color patch', error)
 		return new NextResponse('Internal error', { status: 500 })
 	}
 }
 
 export async function DELETE(
 	req: Request,
-	{ params }: { params: { storeId: string; sizeId: string } }
+	{ params }: { params: { storeId: string; colorId: string } }
 ) {
 	try {
 		const { userId } = auth()
@@ -63,7 +63,7 @@ export async function DELETE(
 			return new NextResponse('Unauthenticated', { status: 401 })
 		}
 
-		if (!params.sizeId) {
+		if (!params.colorId) {
 			return new NextResponse('Billboard id is missing', { status: 400 })
 		}
 
@@ -78,15 +78,15 @@ export async function DELETE(
 			return new NextResponse('Unautohorized', { status: 403 })
 		}
 
-		const size = await db.size.deleteMany({
+		const color = await db.color.deleteMany({
 			where: {
-				id: params.sizeId,
+				id: params.colorId,
 			},
 		})
 
-		return NextResponse.json(size)
+		return NextResponse.json(color)
 	} catch (error) {
-		console.log('size delete', error)
+		console.log('color delete', error)
 		return new NextResponse('Internal error', { status: 500 })
 	}
 }
