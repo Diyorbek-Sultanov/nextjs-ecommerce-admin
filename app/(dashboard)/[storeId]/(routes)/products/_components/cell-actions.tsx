@@ -49,7 +49,7 @@ const CellActions: React.FC<{ data: ProductColumns }> = ({ data }) => {
 						Copy ID
 					</DropdownMenuItem>
 					<DropdownMenuItem asChild>
-						<Link href={`/${params.storeId}/billboards/${data.id}`}>
+						<Link href={`/${params.storeId}/products/${data.id}`}>
 							<Edit3 className='h-4 w-4 mr-2' />
 							Edit
 						</Link>

@@ -281,6 +281,7 @@ const ProductForm: React.FC<TProductFormProps> = ({
 							)}
 						/>
 						<FormField
+							disabled={updateLoading || createLoading}
 							control={form.control}
 							name='isFeatured'
 							render={({ field }) => (
@@ -301,6 +302,7 @@ const ProductForm: React.FC<TProductFormProps> = ({
 							)}
 						/>
 						<FormField
+							disabled={updateLoading || createLoading}
 							control={form.control}
 							name='isArchived'
 							render={({ field }) => (

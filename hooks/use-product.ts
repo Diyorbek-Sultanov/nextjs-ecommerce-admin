@@ -19,8 +19,8 @@ const useProduct = (productId?: string) => {
 			ProductService.createProduct(data, params.storeId as string),
 		onSuccess: () => {
 			toast.success('Product success created')
-			router.refresh()
 			router.push(`/${params.storeId}/products`)
+			router.refresh()
 		},
 		onError: (error) => {
 			toast.error(error.message)
@@ -37,8 +37,8 @@ const useProduct = (productId?: string) => {
 			),
 		onSuccess: () => {
 			toast.success('Product success updated')
-			router.refresh()
 			router.push(`/${params.storeId}/products`)
+			router.refresh()
 		},
 		onError: (error) => {
 			toast.error(error.message)

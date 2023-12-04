@@ -19,8 +19,8 @@ const useCategory = (categoryId?: string) => {
 			CategoryService.createCategory(data, params.storeId as string),
 		onSuccess: () => {
 			toast.success('Category success created')
-			router.refresh()
 			router.push(`/${params.storeId}/categories`)
+			router.refresh()
 		},
 		onError: (error) => {
 			toast.error(error.message)
@@ -37,8 +37,8 @@ const useCategory = (categoryId?: string) => {
 			),
 		onSuccess: () => {
 			toast.success('Category success updated')
-			router.refresh()
 			router.push(`/${params.storeId}/categories`)
+			router.refresh()
 		},
 		onError: (error) => {
 			toast.error(error.message)
