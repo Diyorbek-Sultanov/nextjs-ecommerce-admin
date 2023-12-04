@@ -12,13 +12,13 @@ import type { ProductColumns } from './columns'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { toast } from 'sonner'
-import { useBillboard } from '@/hooks/use-billboard'
 import { useState } from 'react'
 import AlertModal from '@/components/alert-modal'
+import { useProduct } from '@/hooks/use-product'
 
 const CellActions: React.FC<{ data: ProductColumns }> = ({ data }) => {
 	const params = useParams()
-	const { deleteLoading, deleteMutate } = useBillboard(data.id)
+	const { deleteLoading, deleteMutate } = useProduct(data.id)
 	const [isOpen, setIsOpen] = useState(false)
 
 	const onCopy = () => {

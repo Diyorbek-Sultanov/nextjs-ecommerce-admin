@@ -18,6 +18,10 @@ const CREATECOLOR = 'create-color'
 const UPDATECOLOR = 'update-color'
 const DELETECOLOR = 'delet-color'
 
+const CREATEPRODUCT = 'create-product'
+const UPDATEPRODUCT = 'update-product'
+const DELETEPRODUCT = 'delet-product'
+
 export {
 	UPDATESTORE,
 	DELETESTORE,
@@ -34,4 +38,7 @@ export {
 	CREATECOLOR,
 	UPDATECOLOR,
 	DELETECOLOR,
+	CREATEPRODUCT,
+	DELETEPRODUCT,
+	UPDATEPRODUCT,
 }

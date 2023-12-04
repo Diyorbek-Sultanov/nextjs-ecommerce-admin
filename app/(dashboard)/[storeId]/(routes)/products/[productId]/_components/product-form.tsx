@@ -24,6 +24,7 @@ import {
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { useBillboard } from '@/hooks/use-billboard'
+import { useProduct } from '@/hooks/use-product'
 import { TProductSchema, productSchema } from '@/lib/zod-validation/product'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { Category, Color, Image, Product, Size } from '@prisma/client'
@@ -57,7 +58,7 @@ const ProductForm: React.FC<TProductFormProps> = ({
 		updateMutate,
 		createLoading,
 		createMutate,
-	} = useBillboard()
+	} = useProduct()
 
 	const form = useForm<TProductSchema>({
 		resolver: zodResolver(productSchema),
