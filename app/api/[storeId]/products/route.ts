@@ -75,8 +75,9 @@ export async function GET(
 		const colorId = searchParams.get('colorId') || undefined
 		const sizeId = searchParams.get('sizeId') || undefined
 		const isFeatured = searchParams.get('isFeatured') || undefined
-		const page = searchParams.get('page') || 0
-		const pageSize = searchParams.get('pageSiz') || 8
+		const page = searchParams.get('page') || 1
+		const pageSize = searchParams.get('pageSize')
+		const lastCursor = searchParams.get('lastCursor')
 
 		if (!params.storeId) {
 			return new NextResponse('Store id is missing', { status: 400 })
@@ -92,7 +93,12 @@ export async function GET(
 				isArchived: false,
 			},
 			skip: Number(page),
-			take: Number(pageSize),
+			take: pageSize ? parseInt(pageSize as string) : 8,
+			...(lastCursor && {
+				cursor: {
+					id: lastCursor as string,
+				},
+			}),
 			include: {
 				images: true,
 				category: true,
@@ -104,17 +110,36 @@ export async function GET(
 			},
 		})
 
-		const total = (await prisma?.product.count()) as number
+		if (products.length === 0) {
+			return NextResponse.json({
+				data: [],
+				metdaData: {
+					hasNextPage: false,
+					lastCursor: null,
+				},
+			})
+		}
+
+		const lastProduct = products[products.length - 1]
+		const cursor = lastProduct.id
+
+		const nextPage = await db.product.findMany({
+			skip: Number(page),
+			take: pageSize ? parseInt(pageSize as string) : 8,
+			cursor: {
+				id: cursor,
+			},
+		})
 
 		return NextResponse.json({
 			data: products,
 			metaData: {
-				hasNextPage: Number(page) + Number(pageSize) < total,
-				totalPages: Math.ceil(total / Number(pageSize)),
+				hasNextPage: nextPage.length > 0,
+				lastCursor: cursor,
 			},
 		})
 	} catch (error) {
 		console.log('products get', error)
-		return new NextResponse('Internal error', { status: 500 })
+		return new NextResponse('Internal error get products', { status: 500 })
 	}
 }
